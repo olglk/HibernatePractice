@@ -73,6 +73,16 @@ public class DogService {
     }
 
     @Transactional
+    public void updateDog(Dog dogNew, int id) {
+        //Dog dogOld = sessionFactory.getCurrentSession()
+                //.get(Dog.class, id);
+        //dogOld.setName(dogNew.getName());
+        //dogOld.setAge(dogNew.getAge());
+        sessionFactory.getCurrentSession()
+                .saveOrUpdate(dogNew);
+    }
+
+    @Transactional
     public List<Dog> listDogOlderThan(int age) {
         return sessionFactory.getCurrentSession()
                 .createNativeQuery("SELECT * FROM dog WHERE age > :age", Dog.class)
